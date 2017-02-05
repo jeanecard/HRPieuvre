@@ -18,5 +18,5 @@ HRDrawModule.HRConst.prototype.BARYCENTRE_COLOR = "#DE3074";
 HRDrawModule.HRConst.prototype.ROTATION_HANDLE_COLOR = "#33DE30";
 HRDrawModule.HRConst.prototype.ROTATION_STROKE_STYLE = "#33DE30";
 HRDrawModule.HRConst.prototype.DEFAULT_STROKE_STYLE = "#000500";
-HRDrawModule.HRConst.prototype.DEFAULT_FILL_STYLE = "#e6fff9";//"#b3e6ff";
+HRDrawModule.HRConst.prototype.DEFAULT_FILL_STYLE = "#5cb0e8";//"#b3e6ff";
 
