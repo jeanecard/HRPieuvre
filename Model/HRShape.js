@@ -60,7 +60,7 @@ HRDrawModule.HRShape.prototype.isOn = function (hrDocumentPoint) {
 };
 
 //Fonction retournant le barycentre. Pure abstract à ce niveau
-HRDrawModule.HRPolyLine.prototype.getCentroid = function () {
+HRDrawModule.HRShape.prototype.getCentroid = function () {
  return null;
 };
 
