@@ -15,7 +15,7 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 {
 	//On référence une bonne fois pour toute le premier et unique Layer du document 
 	var layer = hRdocument.getLayersRef()[0];
-	layer.getShapesRef().push(new HRDrawModule.HRRectangle()); //Essai 1
+	//layer.getShapesRef().push(new HRDrawModule.HRRectangle()); //Essai 1
 
 	var polyline = new HRDrawModule.HRPolyLine();
 	polyline.addPoint(new HRDrawModule.HRPoint(10, 10, 0));
