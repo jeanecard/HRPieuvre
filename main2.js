@@ -24,24 +24,11 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 	polyline.addPoint(new HRDrawModule.HRPoint(400, 300, 0));
 	layer.getShapesRef().push(polyline);
 
-	 var roger = new HRDrawModule.HRBoundingRect(new HRDrawModule.HRPoint(10, 10, 0),10);
-	
-	// //Translation via matrice (sur x)
+	 //Translation via matrice (sur x)
 	layer.getShapesRef()[0].setHandles(0, new HRDrawModule.HRPoint(500, 200, 1));
 	layer.getShapesRef()[0].setHandles(2, new HRDrawModule.HRPoint(600, 400, 1));
 
-	//mise en place temporaire de la rotation sur Shape 0
-	var hrBarycentre = layer.getShapesRef()[0].getCentroid();
-	var hrCentreRotation = new HRDrawModule.HRPoint(hrBarycentre.getX() + 50, hrBarycentre.getY(), 0);
-	layer.getShapesRef()[0].setRotationPoint(hrCentreRotation);
-	//layer.Shapes[0].rotate(3.14/4, 500, 200);
-
-	//mise en place temporaire de la rotation sur Shape 1
-	var hrBarycentre = layer.getShapesRef()[1].getCentroid();
-	var hrCentreRotation = new HRDrawModule.HRPoint(hrBarycentre.getX() + 50, hrBarycentre.getY(), 0);
-	layer.getShapesRef()[1].setRotationPoint(hrCentreRotation);
-
-	//Fare un singleton pour la factory
+	//!TODO : Faire un singleton pour la factory
 	var factory = new HRDrawModule.HRFactory();
 	
 	//Création d'une vue 2D sur le canvas avec son modèle
@@ -51,10 +38,10 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 	var hrView2 = factory.CreateView(hRdocument, domCanvas2);
 	
 	var view2Matrix = hrView2.getMatrixRef();
+	//Application d'un Zoom négatif sur la seconde vue.
 	view2Matrix.set([0, 0], 0.5);
 	view2Matrix.set([1, 1], 0.5);
 	view2Matrix.set([2, 2], 0.5);
-	
 	
 	var views = new Array();
 	views.push(hrView1);
@@ -66,29 +53,4 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 	//rendre le document
 	hrView1.render();
 	hrView2.render();
-	
-	var hrPoint = new HRDrawModule.HRPoint(50.5, 112.5, 0.5);
-	var hrPoint2 = new HRDrawModule.HRPoint(50.5, 112.5, 0.5);
-	var currentTime = new Date();
-	for(var i = 0; i < 10000000;i++)
-	{
-		var valeur = hrPoint.getX();
-		valeur++;
-	}
-	var endTime = new Date();
-	console.log(endTime- currentTime);
-	
-	delete hrPoint.x;
-	console.log("hrPoint.x : "+ hrPoint.x);
-	console.log("hrPoint2.x : " + hrPoint2.x);
-	
-	Object.defineProperties(hrPoint, {
-	x: { 
-	get: function() { 
-		return 42;
-		}
-	}});
-	console.log("hrPoint.x : "+ hrPoint.x);
-	console.log("hrPoint2.x : " + hrPoint2.x);
 }
-
