@@ -15,7 +15,7 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 {
 	//On référence une bonne fois pour toute le premier et unique Layer du document 
 	var layer = hRdocument.getLayersRef()[0];
-	//layer.getShapesRef().push(new HRDrawModule.HRRectangle()); //Essai 1
+	layer.getShapesRef().push(new HRDrawModule.HRRectangle()); //Essai 1
 
 	var polyline = new HRDrawModule.HRPolyLine();
 	polyline.addPoint(new HRDrawModule.HRPoint(10, 10, 0));
@@ -24,11 +24,23 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 	polyline.addPoint(new HRDrawModule.HRPoint(400, 300, 0));
 	layer.getShapesRef().push(polyline);
 
-	 //Translation via matrice (sur x)
+	
+	// //Translation via matrice (sur x)
 	layer.getShapesRef()[0].setHandles(0, new HRDrawModule.HRPoint(500, 200, 1));
 	layer.getShapesRef()[0].setHandles(2, new HRDrawModule.HRPoint(600, 400, 1));
 
-	//!TODO : Faire un singleton pour la factory
+	//mise en place temporaire de la rotation sur Shape 0
+	var hrBarycentre = layer.getShapesRef()[0].getCentroid();
+	var hrCentreRotation = new HRDrawModule.HRPoint(hrBarycentre.getX() + 50, hrBarycentre.getY(), 0);
+	layer.getShapesRef()[0].setRotationPoint(hrCentreRotation);
+	//layer.Shapes[0].rotate(3.14/4, 500, 200);
+
+	//mise en place temporaire de la rotation sur Shape 1
+	var hrBarycentre = layer.getShapesRef()[1].getCentroid();
+	var hrCentreRotation = new HRDrawModule.HRPoint(hrBarycentre.getX() + 50, hrBarycentre.getY(), 0);
+	layer.getShapesRef()[1].setRotationPoint(hrCentreRotation);
+
+	//Fare un singleton pour la factory
 	var factory = new HRDrawModule.HRFactory();
 	
 	//Création d'une vue 2D sur le canvas avec son modèle
@@ -38,10 +50,10 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 	var hrView2 = factory.CreateView(hRdocument, domCanvas2);
 	
 	var view2Matrix = hrView2.getMatrixRef();
-	//Application d'un Zoom négatif sur la seconde vue.
 	view2Matrix.set([0, 0], 0.5);
 	view2Matrix.set([1, 1], 0.5);
 	view2Matrix.set([2, 2], 0.5);
+	
 	
 	var views = new Array();
 	views.push(hrView1);
@@ -53,4 +65,6 @@ if(hRdocument.getLayersRef() && hRdocument.getLayersRef()[0])
 	//rendre le document
 	hrView1.render();
 	hrView2.render();
+	
 }
+
