@@ -3,7 +3,7 @@
 //Amelioration : inversifyjs pour notamment éviter aux documents d'instancier le layer ///
 //Passer par des interfaces plutôt que par des instances.
 //Etudier les appels de fonction d'un module dans son constructeur (ex dans HRPoint faire apoel a une fonction HRPoint dans le constructeur notamment pour faire un object.DefinePRopertie
-
+//Fin commentaire.
 
  
 
