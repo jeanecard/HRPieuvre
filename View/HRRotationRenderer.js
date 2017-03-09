@@ -17,10 +17,12 @@ HRDrawModule.HRRotationRenderer.prototype.render = function(dc, shape, projectio
 		var handleWidth = new HRDrawModule.HRConst().D2_HANDLE_ZONE_WIDTH;
 		if (shape.__rotationPoint) {
 			var centerHrPoint = shape.getCentroid();
+			var centerHRPointCloned = centerHrPoint.clone();
+			centerHRPointCloned.transform(projectionMatrix);
 			var clonedRotationPoint = shape.__rotationPoint.clone();
 			clonedRotationPoint.transform(projectionMatrix);
 			dc.beginPath();
-			dc.moveTo(centerHrPoint.getX(), centerHrPoint.getY());
+			dc.moveTo(centerHRPointCloned.getX(), centerHRPointCloned.getY());
 			dc.lineTo(clonedRotationPoint.getX(), clonedRotationPoint.getY());
 			dc.strokeStyle = new HRDrawModule.HRConst().ROTATION_STROKE_STYLE;
 			dc.setLineDash([5, 8]);
